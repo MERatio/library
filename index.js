@@ -124,7 +124,7 @@ function addDummyBooks(count) {
 
 window.addEventListener('DOMContentLoaded', () => {
 	if (library.length === 0) {
-		addDummyBooks(5);
+		addDummyBooks(8);
 		renderLibrary(library);
 	}
 

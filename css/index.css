@@ -182,7 +182,6 @@ input.form-control {
 	background-color: #fff;
 	background-color: var(--red-500);
 	border: none;
-	border-radius: var(--border-radius);
 	cursor: pointer;
 }
 

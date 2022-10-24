@@ -48,7 +48,6 @@ function createDomBook(book) {
 	domReadBtn.classList.add('read-btn');
 	domReadBtn.textContent = book.read ? 'read' : 'not read yet';
 	domBook.appendChild(domReadBtn);
-
 	domReadBtn.addEventListener('click', function handleReadBtnClick(event) {
 		const bookIndex = Number(domBook.dataset.bookIndex);
 		const book = library.find((book, index) => index === bookIndex);
@@ -60,14 +59,12 @@ function createDomBook(book) {
 	removeBookBtn.classList.add('remove-card-btn');
 	removeBookBtn.textContent = 'Remove';
 	domBook.appendChild(removeBookBtn);
-
 	removeBookBtn.addEventListener(
 		'click',
 		function handleRemoveBookBtnClick(event) {
 			library = library.filter(
 				(book, index) => index !== Number(domBook.dataset.bookIndex)
 			);
-
 			renderLibrary(library);
 		}
 	);
@@ -132,10 +129,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	dom.openModalBtn.addEventListener('click', handleOpenModalClick);
-
 	dom.closeModalBtn.addEventListener('click', handleCloseModalClick);
-
 	dom.modal.addEventListener('click', handleModalClick);
-
 	dom.bookForm.addEventListener('submit', handleBookFormSubmit);
 });

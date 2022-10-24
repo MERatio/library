@@ -92,21 +92,23 @@ function handleBookFormSubmit(event) {
 	handleCloseModalClick();
 }
 
-dom.openModalBtn.addEventListener('click', handleOpenModalClick);
-
-dom.closeModalBtn.addEventListener('click', handleCloseModalClick);
-
-dom.modal.addEventListener('click', handleModalClick);
-
-dom.bookForm.addEventListener('submit', handleBookFormSubmit);
-
 function addDummyBooks(count) {
 	for (let i = 0; i < count; i++) {
 		addBookToLibrary(`title ${i}`, `author ${i}`, 300 + i, i % 2 === 0);
 	}
 }
 
-if (library.length === 0) {
-	addDummyBooks(5);
-	renderLibrary(library);
-}
+window.addEventListener('DOMContentLoaded', () => {
+	if (library.length === 0) {
+		addDummyBooks(5);
+		renderLibrary(library);
+	}
+
+	dom.openModalBtn.addEventListener('click', handleOpenModalClick);
+
+	dom.closeModalBtn.addEventListener('click', handleCloseModalClick);
+
+	dom.modal.addEventListener('click', handleModalClick);
+
+	dom.bookForm.addEventListener('submit', handleBookFormSubmit);
+});

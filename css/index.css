@@ -68,7 +68,7 @@ body {
 }
 
 .modal-content {
-	width: 400px;
+	width: clamp(300px, 80%, 600px);
 	padding: 30px;
 	background-color: #fff;
 	border-radius: var(--border-radius);

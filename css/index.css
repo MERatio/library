@@ -181,7 +181,7 @@ input.form-control {
 	padding: 4px 0;
 	background-color: #fff;
 	background-color: var(--red-500);
-	border: none;
+	border: 1px solid var(--red-500);
 	cursor: pointer;
 }
 

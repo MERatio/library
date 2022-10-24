@@ -159,19 +159,26 @@ input.form-control {
 	background-color: #fff;
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow);
+
+	display: grid;
+	row-gap: 5px;
 }
 
-.card-title {
-	margin-bottom: 10px;
+.read-btn {
+	border: 1px solid var(--neutral-800);
+	padding: 4px 0;
+	background: transparent;
+	cursor: pointer;
 }
 
-.card-text {
-	margin-bottom: 5px;
+.read-btn:hover,
+.read-btn:active {
+	background-color: #e5e7eb;
 }
 
 .remove-card-btn {
 	color: #fff;
-	padding: 4px 8px;
+	padding: 4px 0;
 	background-color: #fff;
 	background-color: var(--red-500);
 	border: none;

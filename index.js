@@ -2,6 +2,10 @@
 
 const dom = {
 	cards: document.querySelector('.js-cards'),
+	openModalBtn: document.querySelector('.js-open-modal-btn'),
+	modal: document.querySelector('.js-modal'),
+	closeModalBtn: document.querySelector('.js-close-modal-btn'),
+	bookForm: document.querySelector('.js-book-form'),
 };
 
 let library = [];
@@ -22,7 +26,7 @@ function createDomBook(book) {
 	const domBook = document.createElement('article');
 	domBook.classList.add('card');
 
-	const domTitle = document.createElement('h2');
+	const domTitle = document.createElement('h3');
 	domTitle.classList.add('card-title');
 	domTitle.textContent = book.title;
 	domBook.appendChild(domTitle);
@@ -46,11 +50,55 @@ function createDomBook(book) {
 }
 
 function renderLibrary(library) {
+	dom.cards.innerHTML = '';
 	for (const book of library) {
 		const domBook = createDomBook(book);
 		dom.cards.appendChild(domBook);
 	}
 }
+
+function handleOpenModalClick() {
+	dom.modal.classList.add('active');
+	dom.bookForm.elements[0].focus();
+}
+
+function handleCloseModalClick() {
+	dom.modal.classList.remove('active');
+	dom.bookForm.reset();
+}
+
+function handleModalClick(event) {
+	if (event.target === dom.modal) {
+		handleCloseModalClick();
+	}
+}
+
+function handleBookFormSubmit(event) {
+	event.preventDefault();
+	const bookProps = {};
+	for (const element of event.target.elements) {
+		if (element.nodeName === 'INPUT') {
+			if (element.type === 'checkbox') {
+				bookProps[element.name] = element.checked;
+			} else {
+				bookProps[element.name] = element.value;
+			}
+		}
+	}
+
+	const { title, author, numOfPages, read } = bookProps;
+	addBookToLibrary(title, author, numOfPages, read);
+	renderLibrary(library);
+	handleCloseModalClick();
+}
+
+dom.openModalBtn.addEventListener('click', handleOpenModalClick);
+
+dom.closeModalBtn.addEventListener('click', handleCloseModalClick);
+
+dom.modal.addEventListener('click', handleModalClick);
+
+dom.bookForm.addEventListener('submit', handleBookFormSubmit);
 
 function addDummyBooks(count) {
 	for (let i = 0; i < count; i++) {

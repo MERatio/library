@@ -16,10 +16,67 @@
 		<script src="index.js" defer></script>
 	</head>
 	<body>
+		<section class="modal js-modal">
+			<div class="modal-content">
+				<h2 class="modal-header">Add a new book</h2>
+				<button type="button" class="modal-close-btn js-close-modal-btn">
+					&#10006;
+				</button>
+				<form class="book-form js-book-form">
+					<div class="form-group">
+						<label for="title" class="form-label">Title</label>
+						<input
+							type="text"
+							name="title"
+							id="title"
+							class="form-control"
+							placeholder="Harry Potter and the Philospher's Stone"
+							required
+						/>
+					</div>
+					<div class="form-group">
+						<label for="author" class="form-label">Author</label>
+						<input
+							type="text"
+							name="author"
+							id="author"
+							class="form-control"
+							placeholder="J. K. Rowling"
+							required
+						/>
+					</div>
+					<div class="form-group">
+						<label for="numOfPages" class="form-label">Number of pages</label>
+						<input
+							type="number"
+							name="numOfPages"
+							id="numOfPages"
+							class="form-control"
+							placeholder="223"
+							required
+						/>
+					</div>
+					<div class="form-group-inline">
+						<label for="read" class="form-label"
+							>Have you read it already?</label
+						>
+						<input type="checkbox" name="read" id="read" />
+					</div>
+					<div class="form-group">
+						<button type="submit" class="success-btn jsbook-form-submit">
+							Add book
+						</button>
+					</div>
+				</form>
+			</div>
+		</section>
 		<div class="container">
 			<header class="header">
 				<h1>Library</h1>
 			</header>
+			<button type="button" class="success-btn js-open-modal-btn">
+				Add new book
+			</button>
 			<main class="main">
 				<div class="cards js-cards"></div>
 			</main>

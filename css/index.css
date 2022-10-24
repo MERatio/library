@@ -1,6 +1,8 @@
 :root {
 	--neutral-800: #262626;
 	--gray-200: #e5e7eb;
+	--border-radius: 10px;
+	--box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
 html {
@@ -29,11 +31,99 @@ body {
 	background-color: var(--gray-200);
 }
 
+.success-btn {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #fff;
+	padding: 8px 16px;
+	background-color: #38bdf8;
+	border: none;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+
+	justify-self: center;
+}
+
+.success-btn:hover,
+.success-btn:active {
+	background-color: #0ea5e9;
+}
+
+.modal {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+
+	display: none;
+	position: fixed;
+	z-index: 2;
+}
+
+.active {
+	display: block;
+}
+
+.modal-content {
+	width: 400px;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.modal-header {
+	text-align: center;
+
+	margin-bottom: 10px;
+}
+
+.modal-close-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 5px;
+
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.book-form {
+	display: grid;
+	row-gap: 20px;
+}
+
+.form-group {
+	display: grid;
+	row-gap: 10px;
+}
+
+.form-group-inline {
+	display: grid;
+	grid-auto-flow: column;
+	column-gap: 8px;
+	justify-content: start;
+	align-items: center;
+}
+
+.form-label {
+	font-size: 1.1rem;
+}
+
+input.form-control {
+	padding: 5px;
+}
+
 .container {
 	min-height: 100vh;
 
 	display: grid;
-	grid-template-rows: auto 1fr;
+	grid-template-rows: repeat(2, auto) 1fr;
 	row-gap: 20px;
 }
 
@@ -63,8 +153,8 @@ body {
 	text-align: center;
 	padding: 20px;
 	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
 }
 
 .card-title {

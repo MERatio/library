@@ -64,17 +64,6 @@ function createDomBook(book) {
 	removeBookBtn.addEventListener(
 		'click',
 		function handleRemoveBookBtnClick(event) {
-			let domBook;
-			let curElement = event.target.parentNode;
-
-			while (!domBook) {
-				if (curElement.dataset.bookIndex) {
-					domBook = curElement;
-				} else {
-					curElement.parentNode;
-				}
-			}
-
 			library = library.filter(
 				(book, index) => index !== Number(domBook.dataset.bookIndex)
 			);

@@ -145,11 +145,11 @@ input.form-control {
 }
 
 .cards {
-	width: 80%;
+	width: clamp(300px, 80%, 900px);
 
 	justify-self: center;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 	gap: 10px;
 }
 

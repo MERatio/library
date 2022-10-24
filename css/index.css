@@ -1,6 +1,8 @@
 :root {
 	--neutral-800: #262626;
 	--gray-200: #e5e7eb;
+	--red-500: #ef4444;
+	--red-600: #dc2626;
 	--border-radius: 10px;
 	--box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
@@ -161,6 +163,21 @@ input.form-control {
 	margin-bottom: 10px;
 }
 
-.card-text:not(:last-of-type) {
+.card-text {
 	margin-bottom: 5px;
+}
+
+.remove-card-btn {
+	color: #fff;
+	padding: 4px 8px;
+	background-color: #fff;
+	background-color: var(--red-500);
+	border: none;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+}
+
+.remove-card-btn:hover,
+.remove-card-btn:active {
+	background-color: var(--red-600);
 }

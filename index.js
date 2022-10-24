@@ -46,13 +46,41 @@ function createDomBook(book) {
 	domRead.textContent = book.read ? 'read' : 'not read yet';
 	domBook.appendChild(domRead);
 
+	const removeBookBtn = document.createElement('button');
+	removeBookBtn.classList.add('remove-card-btn');
+	removeBookBtn.textContent = 'Remove';
+	domBook.appendChild(removeBookBtn);
+
+	removeBookBtn.addEventListener(
+		'click',
+		function handleRemoveBookBtnClick(event) {
+			let domBook;
+			let curElement = event.target.parentNode;
+
+			while (!domBook) {
+				if (curElement.dataset.bookIndex) {
+					domBook = curElement;
+				} else {
+					curElement.parentNode;
+				}
+			}
+
+			library = library.filter(
+				(book, index) => index !== Number(domBook.dataset.bookIndex)
+			);
+
+			renderLibrary(library);
+		}
+	);
+
 	return domBook;
 }
 
 function renderLibrary(library) {
 	dom.cards.innerHTML = '';
-	for (const book of library) {
-		const domBook = createDomBook(book);
+	for (let i = 0; i < library.length; i++) {
+		const domBook = createDomBook(library[i]);
+		domBook.dataset.bookIndex = i;
 		dom.cards.appendChild(domBook);
 	}
 }

@@ -7,9 +7,9 @@ const addBookForm = document.getElementById('addBookForm');
 
 const books = [];
 
-function Book(author, title, pages, read) {
-	this.author = author;
+function Book(title, author, pages, read) {
 	this.title = title;
+	this.author = author;
 	this.pages = pages;
 	this.read = read;
 }
@@ -72,15 +72,15 @@ function renderBook(book) {
 	bookList.appendChild(bookDiv);
 }
 
-function addBook(author, title, pages, read) {
-	const book = new Book(author, title, pages, read);
+function addBook(title, author, pages, read) {
+	const book = new Book(title, author, pages, read);
 	books.push(book);
 	renderBook(book);
 }
 
 function seedBooks(numOfBooks) {
 	for (let i = 1; i <= numOfBooks; i++) {
-		addBook(`author-${i}`, `book-${i}`, i * 100, Math.random() < 0.5);
+		addBook(`book-${i}`, `author-${i}`, i * 100, Math.random() < 0.5);
 	}
 }
 
@@ -98,7 +98,7 @@ addBookForm.addEventListener('submit', (e) => {
 	const author = addBookForm.querySelector('#author').value;
 	const pages = addBookForm.querySelector('#pages').value;
 	const read = addBookForm.querySelector('#read').checked;
-	addBook(author, title, pages, read);
+	addBook(title, author, pages, read);
 });
 
 seedBooks(10);

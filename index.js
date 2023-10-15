@@ -27,7 +27,7 @@ function deleteBook(bookId) {
 }
 
 function handleDeleteBookBtnClick(e) {
-	deleteBook(e.target.parentNode.dataset.bookId);
+	deleteBook(e.target.dataset.bookId);
 }
 
 function styleBookReadBtn(book, readBtn) {
@@ -42,7 +42,7 @@ function styleBookReadBtn(book, readBtn) {
 	}
 }
 
-function changeBookReadBtn(book, readBtn) {
+function changeBookReadStatus(book, readBtn) {
 	book.read = !book.read;
 	styleBookReadBtn(book, readBtn);
 }
@@ -63,6 +63,7 @@ function renderBook(book) {
 	const deleteBtn = document.createElement('button');
 	deleteBtn.setAttribute('type', 'button');
 	deleteBtn.classList.add('close-btn');
+	deleteBtn.dataset.bookId = book.id;
 	deleteBtn.addEventListener('click', handleDeleteBookBtnClick);
 	bookDiv.appendChild(deleteBtn);
 
@@ -99,7 +100,7 @@ function renderBook(book) {
 		const readBtn = e.target;
 		const bookToUpdateId = Number(readBtn.dataset.bookId);
 		const bookToUpdate = books.find((book) => book.id === bookToUpdateId);
-		changeBookReadBtn(bookToUpdate, readBtn);
+		changeBookReadStatus(bookToUpdate, readBtn);
 	});
 	bookTexts.appendChild(readBtn);
 

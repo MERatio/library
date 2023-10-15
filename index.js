@@ -9,27 +9,6 @@ const bookList = document.getElementById('bookList');
 let curId = 0;
 let books = [];
 
-function Book(title, author, pages, read) {
-	this.id = curId;
-	curId++;
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-}
-
-function deleteBook(bookId) {
-	books = books.filter((book) => book.id !== Number(bookId));
-	const bookDiv = bookList.querySelector(`[data-book-id="${bookId}"]`);
-	const bookDeleteBtn = bookDiv.querySelector('button.close-btn');
-	bookDeleteBtn.removeEventListener('click', handleDeleteBookBtnClick);
-	bookDiv.remove();
-}
-
-function handleDeleteBookBtnClick(e) {
-	deleteBook(e.target.dataset.bookId);
-}
-
 function styleBookReadBtn(book, readBtn) {
 	if (book.read) {
 		readBtn.textContent = 'Unread';
@@ -42,9 +21,30 @@ function styleBookReadBtn(book, readBtn) {
 	}
 }
 
-function changeBookReadStatus(book, readBtn) {
-	book.read = !book.read;
-	styleBookReadBtn(book, readBtn);
+function Book(title, author, pages, read) {
+	this.id = curId;
+	curId++;
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.read = read;
+}
+
+Book.prototype.toggleRead = function (readBtn) {
+	this.read = !this.read;
+	styleBookReadBtn(this, readBtn);
+};
+
+function deleteBook(bookId) {
+	books = books.filter((book) => book.id !== Number(bookId));
+	const bookDiv = bookList.querySelector(`[data-book-id="${bookId}"]`);
+	const bookDeleteBtn = bookDiv.querySelector('button.close-btn');
+	bookDeleteBtn.removeEventListener('click', handleDeleteBookBtnClick);
+	bookDiv.remove();
+}
+
+function handleDeleteBookBtnClick(e) {
+	deleteBook(e.target.dataset.bookId);
 }
 
 function renderBook(book) {
@@ -100,7 +100,7 @@ function renderBook(book) {
 		const readBtn = e.target;
 		const bookToUpdateId = Number(readBtn.dataset.bookId);
 		const bookToUpdate = books.find((book) => book.id === bookToUpdateId);
-		changeBookReadStatus(bookToUpdate, readBtn);
+		bookToUpdate.toggleRead(readBtn);
 	});
 	bookTexts.appendChild(readBtn);
 

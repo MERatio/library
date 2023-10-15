@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.close-btn {
+		@apply absolute right-2 top-1 rounded px-1 text-2xl before:content-["×"] hover:text-red-500;
+	}
+	.form-row {
+		@apply flex flex-col;
+	}
+
+	input[type='text'],
+	input[type='number'] {
+		@apply border px-1 py-0.5 outline-blue-300;
+	}
+}

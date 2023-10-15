@@ -14,6 +14,7 @@
 				<button
 					type="button"
 					class="flex items-center rounded bg-blue-500 px-4 py-1 text-white shadow hover:bg-blue-600"
+					id="addBookBtn"
 				>
 					<span class="text-xl/normal font-bold">Add book</span>
 					<span
@@ -21,6 +22,40 @@
 					></span>
 				</button>
 			</div>
+			<!-- Add book modal -->
+			<dialog
+				id="addBookModal"
+				class="w-full rounded p-4 shadow-xl sm:w-6/12 md:w-4/12"
+			>
+				<button type="button" class="close-btn" id="closeBookModalBtn"></button>
+				<h2 class="text-center text-2xl font-bold">Add a new book</h2>
+				<form method="dialog" id="addBookForm">
+					<div class="form-row">
+						<label for="title">Title</label>
+						<input type="text" name="title" id="title" autofocus required />
+					</div>
+					<div class="form-row mt-2">
+						<label for="author">Author</label>
+						<input type="text" name="author" id="author" required />
+					</div>
+					<div class="mt-4 flex items-center space-x-2">
+						<label for="pages">Number of pages</label>
+						<input type="number" name="pages" id="pages" required />
+					</div>
+					<div class="mt-2 flex items-center space-x-2">
+						<label for="read">Did you already read it?</label>
+						<input type="checkbox" name="read" id="read" class="mt-1" />
+					</div>
+					<div class="flex justify-center">
+						<button
+							type="submit"
+							class="mt-4 rounded bg-blue-500 px-4 py-1 text-lg font-bold text-white shadow hover:bg-blue-600"
+						>
+							Add book
+						</button>
+					</div>
+				</form>
+			</dialog>
 			<!-- Books -->
 			<ul
 				class="mt-4 grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-4"

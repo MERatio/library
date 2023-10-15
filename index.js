@@ -99,6 +99,7 @@ addBookForm.addEventListener('submit', (e) => {
 	const pages = addBookForm.querySelector('#pages').value;
 	const read = addBookForm.querySelector('#read').checked;
 	addBook(title, author, pages, read);
+	addBookForm.reset();
 });
 
 seedBooks(10);

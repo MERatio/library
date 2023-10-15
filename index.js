@@ -112,7 +112,7 @@ addBookForm.addEventListener('submit', (e) => {
 	const addBookForm = e.currentTarget;
 	const title = addBookForm.querySelector('#title').value;
 	const author = addBookForm.querySelector('#author').value;
-	const pages = addBookForm.querySelector('#pages').value;
+	const pages = Number(addBookForm.querySelector('#pages').value);
 	const read = addBookForm.querySelector('#read').checked;
 	addBook(title, author, pages, read);
 	addBookForm.reset();

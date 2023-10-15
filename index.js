@@ -42,7 +42,7 @@ function renderBook(book) {
 	bookDiv.appendChild(bookTexts);
 
 	const title = document.createElement('h2');
-	title.classList.add('text-lg');
+	title.classList.add('text-lg', 'font-bold');
 	title.textContent = book.title;
 	bookTexts.appendChild(title);
 

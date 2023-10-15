@@ -12,6 +12,6 @@
 
 	input[type='text'],
 	input[type='number'] {
-		@apply border px-1 py-0.5 outline-blue-300;
+		@apply rounded border bg-neutral-100 px-1 py-0.5 text-neutral-800;
 	}
 }

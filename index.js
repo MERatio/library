@@ -33,18 +33,14 @@ function handleDeleteBookBtnClick(e) {
 function renderBook(book) {
 	const bookDiv = document.createElement('li');
 	bookDiv.classList.add(
+		'text-white',
 		'relative',
 		'rounded',
-		'bg-gradient-to-r',
+		'bg-stone-700',
 		'px-4',
 		'py-6',
 		'shadow',
 	);
-	if (book.read) {
-		bookDiv.classList.add('from-blue-300', 'to-blue-200');
-	} else {
-		bookDiv.classList.add('from-red-300', 'to-red-200');
-	}
 	bookDiv.dataset.bookId = book.id;
 
 	const deleteBtn = document.createElement('button');
@@ -75,14 +71,18 @@ function renderBook(book) {
 	readBtn.classList.add(
 		'mt-1',
 		'rounded',
-		'bg-blue-500',
 		'px-4',
 		'py-1',
 		'font-medium',
 		'text-white',
-		'hover:bg-blue-600',
 	);
-	readBtn.textContent = book.read ? 'Unread' : 'Read';
+	if (book.read) {
+		readBtn.textContent = 'Unread';
+		readBtn.classList.add('bg-rose-500', 'hover:bg-rose-600');
+	} else {
+		readBtn.textContent = 'Read';
+		readBtn.classList.add('bg-blue-500', 'hover:bg-blue-600');
+	}
 	bookTexts.appendChild(readBtn);
 
 	bookList.appendChild(bookDiv);

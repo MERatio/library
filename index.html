@@ -7,5 +7,25 @@
 		<link rel="stylesheet" href="./css/style.css" />
 		<script src="./index.js" defer></script>
 	</head>
-	<body class="bg-slate-700"></body>
+	<body class="bg-slate-200">
+		<div class="container mx-auto mt-8">
+			<!-- Add button container -->
+			<div class="flex justify-center">
+				<button
+					type="button"
+					class="flex items-center rounded bg-blue-500 px-4 py-1 text-white shadow hover:bg-blue-600"
+				>
+					<span class="text-xl/normal font-bold">Add book</span>
+					<span
+						class="ml-1 text-3xl/normal font-medium before:content-['\2295']"
+					></span>
+				</button>
+			</div>
+			<!-- Books -->
+			<ul
+				class="mt-4 grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-4"
+				id="bookList"
+			></ul>
+		</div>
+	</body>
 </html>

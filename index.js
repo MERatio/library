@@ -30,6 +30,23 @@ function handleDeleteBookBtnClick(e) {
 	deleteBook(e.target.parentNode.dataset.bookId);
 }
 
+function styleBookReadBtn(book, readBtn) {
+	if (book.read) {
+		readBtn.textContent = 'Unread';
+		readBtn.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+		readBtn.classList.add('bg-rose-500', 'hover:bg-rose-600');
+	} else {
+		readBtn.textContent = 'Read';
+		readBtn.classList.remove('bg-rose-500', 'hover:bg-rose-600');
+		readBtn.classList.add('bg-blue-500', 'hover:bg-blue-600');
+	}
+}
+
+function changeBookReadBtn(book, readBtn) {
+	book.read = !book.read;
+	styleBookReadBtn(book, readBtn);
+}
+
 function renderBook(book) {
 	const bookDiv = document.createElement('li');
 	bookDiv.classList.add(
@@ -76,13 +93,14 @@ function renderBook(book) {
 		'font-medium',
 		'text-white',
 	);
-	if (book.read) {
-		readBtn.textContent = 'Unread';
-		readBtn.classList.add('bg-rose-500', 'hover:bg-rose-600');
-	} else {
-		readBtn.textContent = 'Read';
-		readBtn.classList.add('bg-blue-500', 'hover:bg-blue-600');
-	}
+	styleBookReadBtn(book, readBtn);
+	readBtn.dataset.bookId = book.id;
+	readBtn.addEventListener('click', (e) => {
+		const readBtn = e.target;
+		const bookToUpdateId = Number(readBtn.dataset.bookId);
+		const bookToUpdate = books.find((book) => book.id === bookToUpdateId);
+		changeBookReadBtn(bookToUpdate, readBtn);
+	});
 	bookTexts.appendChild(readBtn);
 
 	bookList.appendChild(bookDiv);

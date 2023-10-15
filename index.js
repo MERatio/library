@@ -4,19 +4,33 @@ const addBookBtn = document.getElementById('addBookBtn');
 const addBookModal = document.getElementById('addBookModal');
 const closeBookModalBtn = document.getElementById('closeBookModalBtn');
 const addBookForm = document.getElementById('addBookForm');
+const bookList = document.getElementById('bookList');
 
-const books = [];
+let curId = 0;
+let books = [];
 
 function Book(title, author, pages, read) {
+	this.id = curId;
+	curId++;
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
 }
 
-function renderBook(book) {
-	const bookList = document.getElementById('bookList');
+function deleteBook(bookId) {
+	books = books.filter((book) => book.id !== Number(bookId));
+	const bookDiv = bookList.querySelector(`[data-book-id="${bookId}"]`);
+	const bookDeleteBtn = bookDiv.querySelector('button.close-btn');
+	bookDeleteBtn.removeEventListener('click', handleDeleteBookBtnClick);
+	bookDiv.remove();
+}
 
+function handleDeleteBookBtnClick(e) {
+	deleteBook(e.target.parentNode.dataset.bookId);
+}
+
+function renderBook(book) {
 	const bookDiv = document.createElement('li');
 	bookDiv.classList.add(
 		'relative',
@@ -31,10 +45,12 @@ function renderBook(book) {
 	} else {
 		bookDiv.classList.add('from-red-300', 'to-red-200');
 	}
+	bookDiv.dataset.bookId = book.id;
 
 	const deleteBtn = document.createElement('button');
 	deleteBtn.setAttribute('type', 'button');
 	deleteBtn.classList.add('close-btn');
+	deleteBtn.addEventListener('click', handleDeleteBookBtnClick);
 	bookDiv.appendChild(deleteBtn);
 
 	const bookTexts = document.createElement('div');

@@ -21,19 +21,21 @@ function styleBookReadBtn(book, readBtn) {
 	}
 }
 
-function Book(title, author, pages, read) {
-	this.id = curId;
-	curId++;
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-}
+class Book {
+	constructor(title, author, pages, read) {
+		this.id = curId;
+		curId++;
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+	}
 
-Book.prototype.toggleRead = function (readBtn) {
-	this.read = !this.read;
-	styleBookReadBtn(this, readBtn);
-};
+	toggleRead(readBtn) {
+		this.read = !this.read;
+		styleBookReadBtn(this, readBtn);
+	}
+}
 
 function deleteBook(bookId) {
 	books = books.filter((book) => book.id !== Number(bookId));

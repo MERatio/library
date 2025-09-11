@@ -16,6 +16,45 @@
   <body>
     <div class="container">
       <header class="header"><h1>Library</h1></header>
+      <button type="button" class="add-book-btn" id="addBookBtn">
+        Add Book
+      </button>
+      <dialog class="add-book-dialog" id="addBookDialog" closedby="any">
+        <form method="dialog" class="add-book-form" id="addBookForm">
+          <header>
+            <h2>Add New Book</h2>
+            <button type="button" class="close-dialog-btn" id="closeDialogBtn">
+              &times;
+            </button>
+          </header>
+          <div class="form-control">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" autofocus required />
+          </div>
+          <div class="form-control">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required />
+          </div>
+          <div class="form-control">
+            <label for="pages">Pages</label>
+            <input
+              type="number"
+              name="pages"
+              id="pages"
+              step="1"
+              required
+              min="1"
+            />
+          </div>
+          <div class="form-control-row">
+            <label for="haveRead">Have you read it?</label>
+            <input type="checkbox" name="haveRead" id="haveRead" />
+          </div>
+          <button type="submit" class="submit-book-btn" id="submitBookBtn">
+            Submit
+          </button>
+        </form>
+      </dialog>
       <main class="books-list-container">
         <ul class="books-list" id="booksList"></ul>
       </main>

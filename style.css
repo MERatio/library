@@ -36,6 +36,93 @@ button {
   font-size: 2.4rem;
 }
 
+.add-book-btn,
+.submit-book-btn {
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 20px;
+  background-color: #000;
+  border: 0;
+  border-radius: var(--border-radius);
+  display: block;
+  cursor: pointer;
+}
+
+.add-book-btn {
+  font-size: 1.4rem;
+  margin: 0 auto 30px;
+}
+
+.add-book-btn:hover,
+.submit-book-btn:hover {
+  background-color: #000000c5;
+}
+
+.add-book-dialog {
+  width: 100%;
+  max-width: 325px;
+  padding: 30px;
+  border: 0;
+  border-radius: var(--border-radius);
+  margin: auto;
+  transform: translateY(-20%);
+  box-shadow: var(--box-shadow);
+  position: relative;
+}
+
+.add-book-dialog header {
+  display: flex;
+  justify-content: center;
+}
+
+.close-dialog-btn {
+  font-size: 1.4rem;
+  font-weight: 500;
+  width: 25px;
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.close-dialog-btn:hover {
+  color: #00000088;
+  font-weight: 700;
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-control-row {
+  flex-direction: row;
+}
+
+.form-control label {
+  font-weight: 500;
+}
+
+.form-control input {
+  font-size: 100%;
+  padding: 6px 12px;
+  border-radius: var(--border-radius);
+}
+
+#haveRead {
+  vertical-align: middle;
+}
+
 .books-list-container {
   padding: 20px;
   max-width: 1000px;

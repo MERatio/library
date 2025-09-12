@@ -21,6 +21,10 @@ function Book(title, author, pages, haveRead) {
   this.haveRead = haveRead;
 }
 
+Book.prototype.changeHaveRead = function () {
+  this.haveRead = !this.haveRead;
+};
+
 function addBookToBooks(title, author, pages, haveRead) {
   const book = new Book(title, author, pages, haveRead);
   books.push(book);
@@ -46,6 +50,7 @@ function createDomBook(book) {
   const domReadBookBtn = document.createElement('button');
   domReadBookBtn.classList.add('read-book-btn', 'readBookBtn');
   domReadBookBtn.setAttribute('type', 'button');
+  domReadBookBtn.dataset.bookId = book.id;
   if (book.haveRead) {
     domBook.dataset.read = 'true';
     domReadBookBtn.textContent = 'Read';
@@ -53,6 +58,12 @@ function createDomBook(book) {
     domBook.dataset.read = 'false';
     domReadBookBtn.textContent = 'Not read';
   }
+  domReadBookBtn.addEventListener('click', (e) => {
+    const bookId = e.currentTarget.dataset.bookId;
+    const book = books.find((book) => book.id === bookId);
+    book.changeHaveRead();
+    displayDomBooks(books);
+  });
   domBook.appendChild(domReadBookBtn);
 
   const domRemoveBookBtn = document.createElement('button');

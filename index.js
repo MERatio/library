@@ -58,7 +58,14 @@ function createDomBook(book) {
   const domRemoveBookBtn = document.createElement('button');
   domRemoveBookBtn.classList.add('remove-book-btn', 'removeBookBtn');
   domRemoveBookBtn.setAttribute('type', 'button');
+  domRemoveBookBtn.dataset.bookId = book.id;
   domRemoveBookBtn.textContent = 'Remove';
+  domRemoveBookBtn.addEventListener('click', (e) => {
+    const bookId = e.currentTarget.dataset.bookId;
+    const bookIndex = books.findIndex((book) => book.id === bookId);
+    books.splice(bookIndex, 1);
+    displayDomBooks(books);
+  });
   domBook.appendChild(domRemoveBookBtn);
 
   return domBook;

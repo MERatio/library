@@ -9,21 +9,19 @@ const dom = {
 };
 const books = [];
 
-function Book(title, author, pages, haveRead) {
-  if (!new.target) {
-    throw new TypeError('calling Book constructor without new is invalid');
+class Book {
+  constructor(title, author, pages, haveRead) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.haveRead = haveRead;
   }
 
-  this.id = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.haveRead = haveRead;
+  changeHaveRead() {
+    this.haveRead = !this.haveRead;
+  }
 }
-
-Book.prototype.changeHaveRead = function () {
-  this.haveRead = !this.haveRead;
-};
 
 function addBookToBooks(title, author, pages, haveRead) {
   const book = new Book(title, author, pages, haveRead);

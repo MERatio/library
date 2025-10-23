@@ -2,10 +2,13 @@
 
 const dom = {
   addBookBtn: document.querySelector('#addBookBtn'),
+  booksList: document.querySelector('#booksList'),
   addBookDialog: document.querySelector('#addBookDialog'),
   closeDialogBtn: document.querySelector('#closeDialogBtn'),
   addBookForm: document.querySelector('#addBookForm'),
-  booksList: document.querySelector('#booksList'),
+  libraryTitleInput: document.querySelector('#title'),
+  libraryAuthorInput: document.querySelector('#author'),
+  libraryPagesInput: document.querySelector('#pages'),
 };
 
 class Book {
@@ -89,26 +92,72 @@ class Book {
   }
 }
 
-dom.addBookBtn.addEventListener('click', () => {
-  dom.addBookDialog.showModal();
-});
+function attachEventListeners() {
+  dom.addBookBtn.addEventListener('click', () => {
+    dom.addBookDialog.showModal();
+  });
 
-dom.closeDialogBtn.addEventListener('click', () => {
-  dom.addBookDialog.close();
-});
+  dom.closeDialogBtn.addEventListener('click', () => {
+    dom.addBookDialog.close();
+  });
 
-dom.addBookForm.addEventListener('submit', (e) => {
-  const title = dom.addBookForm.querySelector('#title').value;
-  const author = dom.addBookForm.querySelector('#author').value;
-  const pages = parseInt(dom.addBookForm.querySelector('#pages').value);
-  const haveRead = dom.addBookForm.querySelector('#haveRead').checked;
-  Book.addBookToBooks(title, author, pages, haveRead);
+  dom.addBookForm.addEventListener('submit', () => {
+    const title = dom.libraryTitleInput.value;
+    const author = dom.libraryAuthorInput.value;
+    const pages = parseInt(dom.libraryPagesInput.value);
+    const haveRead = dom.addBookForm.querySelector('#haveRead').checked;
+
+    Book.addBookToBooks(title, author, pages, haveRead);
+    Book.displayDomBooks();
+    dom.addBookForm.reset();
+  });
+
+  dom.libraryTitleInput.addEventListener('input', () => {
+    dom.libraryTitleInput.setCustomValidity('');
+  });
+
+  dom.libraryTitleInput.addEventListener('invalid', () => {
+    if (dom.libraryTitleInput.validity.valueMissing) {
+      dom.libraryTitleInput.setCustomValidity(
+        "The book's title must be filled!"
+      );
+    }
+  });
+
+  dom.libraryAuthorInput.addEventListener('input', () => {
+    dom.libraryAuthorInput.setCustomValidity('');
+  });
+
+  dom.libraryAuthorInput.addEventListener('invalid', () => {
+    if (dom.libraryAuthorInput.validity.valueMissing) {
+      dom.libraryAuthorInput.setCustomValidity(
+        "The book's author name must be filled!"
+      );
+    }
+  });
+
+  dom.libraryPagesInput.addEventListener('input', () => {
+    dom.libraryPagesInput.setCustomValidity('');
+  });
+
+  dom.libraryPagesInput.addEventListener('invalid', () => {
+    if (dom.libraryPagesInput.validity.valueMissing) {
+      dom.libraryPagesInput.setCustomValidity(
+        "The book's pages must be filled!"
+      );
+    } else if (dom.libraryPagesInput.validity.rangeUnderflow) {
+      dom.libraryPagesInput.setCustomValidity("The book's pages is too few");
+    }
+  });
+}
+
+function init() {
+  Book.addBookToBooks('Atomic Habits', 'James Clear', 320, true);
+  Book.addBookToBooks('A Game of Thrones', 'George R. R. Martin', 694, false);
+  Book.addBookToBooks('The Lord of the Rings', 'J. R. R. Tolkien', 1077, false);
+
   Book.displayDomBooks();
-  dom.addBookForm.reset();
-});
+  attachEventListeners();
+}
 
-Book.addBookToBooks('Atomic Habits', 'James Clear', 320, true);
-Book.addBookToBooks('A Game of Thrones', 'George R. R. Martin', 694, false);
-Book.addBookToBooks('The Lord of the Rings', 'J. R. R. Tolkien', 1077, false);
-
-Book.displayDomBooks();
+init();
